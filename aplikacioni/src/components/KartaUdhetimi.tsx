@@ -4,12 +4,14 @@ import type { Udhetim } from "@/lib/udhetimet";
 export function KartaUdhetimi({ udhetim }: { udhetim: Udhetim }) {
   return (
     <article className="trip-card">
-      <h2>{udhetim.nisja} → {udhetim.destinacioni} · {udhetim.ora}</h2>
+      <h2>
+        {udhetim.nisja} – {udhetim.destinacioni}
+      </h2>
       <p>
-        {udhetim.vende > 0 ? `Vende të lira: ${udhetim.vende}` : "Plot"}
+        Ora: {udhetim.ora} · Vende të lira: {udhetim.vende}
       </p>
       <Link className="action" href={`/udhetimi/${udhetim.id}`}>
-        Shiko
+        Shiko detajet
       </Link>
     </article>
   );
