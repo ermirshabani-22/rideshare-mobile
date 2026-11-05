@@ -35,6 +35,7 @@ export default async function Home() {
           ? "Burimi: Neon - të dhëna për ushtrime."
           : "Demo publike me të dhëna fiktive. Udhëtimet dhe kërkesat nuk ruhen."}
       </p>
+      <p><Link href="/java-08-test">Provo vendtakimin dhe GPS</Link></p>
       {udhetimet.length === 0 ? (
         <>
           <p>Nuk ka udhetime per momentin.</p>
