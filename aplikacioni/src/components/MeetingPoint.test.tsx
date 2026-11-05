@@ -8,6 +8,8 @@ describe("MeetingPoint", () => {
 
     expect(html).toContain("Përdor vendndodhjen time");
     expect(html).toContain("Ende nuk është konfirmuar.");
+    expect(html).toContain('data-testid="meeting-error"');
+    expect(html).toContain('data-testid="location-status"');
     expect(html).not.toContain("Pozicioni u mor.");
   });
 });

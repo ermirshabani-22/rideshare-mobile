@@ -4,6 +4,9 @@ import { useState } from "react";
 
 type LocationState = "idle" | "loading" | "success" | "denied" | "timeout" | "unavailable";
 
+const GEOLOCATION_PERMISSION_DENIED = 1;
+const GEOLOCATION_TIMEOUT = 3;
+
 export default function MeetingPoint() {
   const [meetingText, setMeetingText] = useState("");
   const [confirmedMeeting, setConfirmedMeeting] = useState("");
@@ -38,9 +41,9 @@ export default function MeetingPoint() {
         setLocationState("success");
       },
       (error) => {
-        if (error.code === error.PERMISSION_DENIED) {
+        if (error.code === GEOLOCATION_PERMISSION_DENIED) {
           setLocationState("denied");
-        } else if (error.code === error.TIMEOUT) {
+        } else if (error.code === GEOLOCATION_TIMEOUT) {
           setLocationState("timeout");
         } else {
           setLocationState("unavailable");
@@ -75,11 +78,9 @@ export default function MeetingPoint() {
         }}
         placeholder="p.sh. Biblioteka"
       />
-      {meetingError && (
-        <p className="meeting-error" data-testid="meeting-error" role="alert">
-          {meetingError}
-        </p>
-      )}
+      <p className="meeting-error" data-testid="meeting-error" role="alert">
+        {meetingError}
+      </p>
       <button
         className="meeting-button"
         data-testid="confirm-meeting"
