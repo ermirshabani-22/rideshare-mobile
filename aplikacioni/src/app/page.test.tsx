@@ -15,7 +15,7 @@ vi.mock("next/navigation", () => ({
   },
 }));
 
-import Detajet from "./page";
+import Detajet from "./udhetimi/[id]/page";
 
 const udhetimi: Udhetim = {
   id: "2",
@@ -39,7 +39,7 @@ describe("Detajet", () => {
     );
 
     expect(html).toContain("Fushë Kosovë – AAB");
-    expect(html).toContain("Ora: 08:15");
+    expect(html).toContain("<strong>Ora:</strong> 08:15");
   });
 
   test("paraqet gabim të sigurt kur databaza nuk arrihet", async () => {

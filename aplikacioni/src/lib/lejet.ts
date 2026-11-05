@@ -1,11 +1,13 @@
 import "server-only";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./auth";
+import { authIsConfigured, authOptions } from "./auth";
 import { getSql } from "./db";
 
 type Profil = { id: string; emri: string; roli: "udhetar" | "shofer" };
 
 export async function profiliIm(): Promise<Profil | null> {
+  if (!authIsConfigured()) return null;
+
   const session = await getServerSession(authOptions);
   const id = session?.user?.id;
   if (!id || !/^\d+$/.test(id)) return null;

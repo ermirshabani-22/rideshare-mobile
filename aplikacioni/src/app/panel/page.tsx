@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Hyrja from "@/components/Hyrja";
+import { authIsConfigured } from "@/lib/auth";
 import { profiliIm } from "@/lib/lejet";
 import { ruajOren } from "./actions";
 
@@ -36,7 +37,9 @@ export default async function Panel({
     <main className="app-shell">
       <h1>Paneli im</h1>
       {m && mesazhet[m] && <p role="status">{mesazhet[m]}</p>}
-      {!p ? (
+      {!authIsConfigured() ? (
+        <p>Hyrja në panel nuk është konfiguruar për këtë demo publike.</p>
+      ) : !p ? (
         <p>Lista eshte publike. Per panelin hyr me llogarine tende GitHub.</p>
       ) : (
         <>
@@ -48,7 +51,7 @@ export default async function Panel({
           </p>
         </>
       )}
-      <Hyrja brenda={Boolean(p)} />
+      {authIsConfigured() && <Hyrja brenda={Boolean(p)} />}
       {p?.roli === "shofer" ? (
         <form action={ruajOren}>
           <h2>Ndrysho oren e udhetimit tim</h2>

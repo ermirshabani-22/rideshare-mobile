@@ -16,10 +16,14 @@
 ## Konfigurimi real
 
 - Neon: projekti ekzistues `rideshare-mobile`, rajoni `aws-eu-central-1`, branch-i primar `production`, databaza `neondb`.
-- Vercel: projekti `rideshare-mobile`, GitHub `AlajdinFetahi/rideshare-mobile`, production branch `main`, framework Next.js, Root Directory `aplikacioni`, function region `fra1`.
-- Production: https://rideshare-mobile-sage.vercel.app
-- `DATABASE_URL`: konfiguruar privatisht për Production dhe Development; jo për Preview.
+- Vercel: u krijua projekti i ri `rideshare-mobile` në team-in `rexhae`, i lidhur me `ermirshabani-22/rideshare-mobile`, branch `main`, framework Next.js dhe Root Directory `aplikacioni`.
+- Domain-i i caktuar për projektin e ri: `https://rideshare-mobile-eight-phi.vercel.app`; ende nuk ka deployment.
+- URL-ja e vjetër `https://rideshare-mobile-sage.vercel.app` i përket konfigurimit të mëparshëm.
+- Demoja publike përdor udhëtime fiktive kur `DATABASE_URL` mungon; kërkesat nuk ruhen. Hyrja me GitHub dhe paneli i shoferit aktivizohen vetëm kur konfigurohen `NEXTAUTH_SECRET`, `GITHUB_ID` dhe `GITHUB_SECRET`.
+- Variablat private të projektit të mëparshëm nuk u transferuan; konfigurimi opsional për databazë/hyrje është dokumentuar te `aplikacioni/AUTH_SETUP.md`.
+- `aplikacioni/.env.local` përmban vetëm emrin e variablës `GITHUBID`; kodi pret `GITHUB_ID` dhe `GITHUB_SECRET` për hyrjen me GitHub. Vlerat e sekretit nuk u lexuan ose ndryshuan.
 - `.env.local`, `.vercel`, `.next` dhe `node_modules`: të injoruara nga Git.
+- Git lokal: `origin` dhe autori `Ermir` janë konfiguruar për llogarinë `ermirshabani-22`.
 
 ## Vendimet
 

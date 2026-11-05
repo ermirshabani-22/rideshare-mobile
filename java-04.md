@@ -4,9 +4,9 @@
 
 Lista, detajet dhe faqja e kërkesës përdorin funksione asinkrone në server. `getSql` lexon `DATABASE_URL` vetëm në server dhe krijon klientin Neon, ndërsa `lexoUdhetimet` dhe `gjejUdhetimin` ekzekutojnë pyetje PostgreSQL; kërkimi sipas ID-së është i parametrizuar. Faqet janë dinamike dhe paraqesin veçmas listën bosh, udhëtimin që mungon, udhëtimin pa vende dhe gabimin e sigurt të lidhjes.
 
-Databaza ekzistuese e projektit `rideshare-mobile` u ripërdor në Neon, në rajonin `aws-eu-central-1`, me databazën `neondb` dhe branch-in primar `production`. Projekti Vercel `rideshare-mobile` u lidh me repository-n, branch-in `main`, framework-un Next.js dhe Root Directory `aplikacioni`. `DATABASE_URL` u konfigurua privatisht për Production dhe Development; Preview nuk u konfigurua sepse nuk nevojitej për këtë detyrë.
+Databaza ekzistuese e projektit `rideshare-mobile` u ripërdor në Neon, në rajonin `aws-eu-central-1`, me databazën `neondb` dhe branch-in primar `production`. Më 5 nëntor 2026 u krijua projekti i ri Vercel `rideshare-mobile` në team-in `rexhae`, i lidhur me `ermirshabani-22/rideshare-mobile`, branch-in `main` dhe Root Directory `aplikacioni`. Deployment-i pret konfigurimin privat të variablave të ambientit.
 
-Production: https://rideshare-mobile-sage.vercel.app
+Domain-i i caktuar për projektin e ri është `https://rideshare-mobile-eight-phi.vercel.app`; ende nuk ka deployment. `https://rideshare-mobile-sage.vercel.app` i përket konfigurimit të mëparshëm.
 
 ## Provat që bëra
 
@@ -38,7 +38,7 @@ Rezultatet finale: 13/13 teste kaluan, ESLint kaloi dhe build-i production i Nex
 
 ## Ku gjendet puna
 
-Skema është në `aplikacioni/schema.sql`. Lidhja dhe pyetjet janë në `aplikacioni/src/lib/db.ts` dhe `aplikacioni/src/lib/udhetimet.ts`; faqet janë nën `aplikacioni/src/app/`. `.env.local` dhe `.vercel` janë të përjashtuara nga Git. Repository: https://github.com/AlajdinFetahi/rideshare-mobile
+Skema është në `aplikacioni/schema.sql`. Lidhja dhe pyetjet janë në `aplikacioni/src/lib/db.ts` dhe `aplikacioni/src/lib/udhetimet.ts`; faqet janë nën `aplikacioni/src/app/`. `.env.local` dhe `.vercel` janë të përjashtuara nga Git. Repository: https://github.com/ermirshabani-22/rideshare-mobile
 
 ## Çfarë mbetet për përmirësim
 

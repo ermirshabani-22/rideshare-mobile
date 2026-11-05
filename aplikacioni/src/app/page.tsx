@@ -1,14 +1,15 @@
 ﻿import Link from "next/link";
 import { getServerSession } from "next-auth";
 import Hyrja from "@/components/Hyrja";
-import { authOptions } from "@/lib/auth";
+import { authIsConfigured, authOptions } from "@/lib/auth";
 import { KartaUdhetimi } from "@/components/KartaUdhetimi";
 import { lexoUdhetimet, type Udhetim } from "@/lib/udhetimet";
 
 export const dynamic = "force-dynamic";
 
 export default async function Home() {
-  const session = await getServerSession(authOptions);
+  const authConfigured = authIsConfigured();
+  const session = authConfigured ? await getServerSession(authOptions) : null;
   let udhetimet: Udhetim[];
   try {
     udhetimet = await lexoUdhetimet();
@@ -16,10 +17,10 @@ export default async function Home() {
     return (
       <main>
         <h1>RideShare</h1>
-        <p><Hyrja brenda={Boolean(session)} /></p>
+        {authConfigured && <p><Hyrja brenda={Boolean(session)} /></p>}
         <p><Link href="/panel">Paneli im</Link></p>
         <p role="alert">Nuk u lidhem me databazen. Provo perseri.</p>
-        <a className="action" href="/">Provo perseri</a>
+        <Link className="action" href="/">Provo përsëri</Link>
       </main>
     );
   }
@@ -27,13 +28,17 @@ export default async function Home() {
   return (
     <main>
       <h1>RideShare - Udhetimet per AAB</h1>
-      <p><Hyrja brenda={Boolean(session)} /></p>
-        <p><Link href="/panel">Paneli im</Link></p>
-      <p>Burimi: Neon - te dhena fiktive per ushtrime</p>
+      {authConfigured && <p><Hyrja brenda={Boolean(session)} /></p>}
+      <p><Link href="/panel">Paneli im</Link></p>
+      <p>
+        {process.env.DATABASE_URL
+          ? "Burimi: Neon - të dhëna për ushtrime."
+          : "Demo publike me të dhëna fiktive. Udhëtimet dhe kërkesat nuk ruhen."}
+      </p>
       {udhetimet.length === 0 ? (
         <>
           <p>Nuk ka udhetime per momentin.</p>
-          <a className='action' href='/'>Rifresko listen</a>
+          <Link className="action" href="/">Rifresko listën</Link>
         </>
       ) : (
         <div className="trip-list">
